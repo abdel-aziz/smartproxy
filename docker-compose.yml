@@ -1,0 +1,12 @@
+bb_proxy:
+  build: .
+  container_name: bb_proxy
+  links:
+    - tor
+  ports:
+    - "9999:9999"
+
+tor:
+  image: jess/tor
+  container_name: tor
+  command: ["/usr/local/bin/tor", "-f", "/etc/torrc", "--SOCKSPort", "0.0.0.0:9050"]
